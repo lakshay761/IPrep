@@ -1,0 +1,60 @@
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[][] arr = {{0,1,0,0,0,1,0},{1,1,1,0,0,1,1},{0,2,0,0,0,1,0},{0,0,0,1,1,1,0},{0,1,0,2,1,0,0},{2,1,0,0,1,1,0},
+				{0,1,1,0,0,0,0},{0,0,1,1,1,1,0}};
+		System.out.println(rott(arr));
+		}
+	
+	public static class help{
+		int i;
+		int j;
+		int level;
+		help(int i,int j,int level){
+			this.i = i;
+			this.j = j;
+			this.level = level;
+		}
+	}
+	public static boolean isValid(int r,int c,int[][] arr) {
+		if(r<0 || r>= arr.length || c<0 || c>= arr[0].length || arr[r][c] == 0|| arr[r][c] == 2|| arr[r][c] == 3) {
+			return false;
+		}
+		return true;
+	}
+	
+	public static int rott(int[][] arr) {
+		LinkedList<help> q = new LinkedList<>();
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr[0].length;j++) {
+				if(arr[i][j] == 2) {
+					q.add(new help(i,j,0));
+				}
+			}
+		}
+		int level = 0;
+		while(q.size()>0) {
+			help rem = q.removeFirst();
+			if(arr[rem.i][rem.j] == 3) {
+				continue;
+			}
+			else {
+				arr[rem.i][rem.j] = 3;
+			}
+			
+			level = rem.level;
+			System.out.println(level);
+			if(isValid(rem.i-1,rem.j,arr)) {
+				q.add(new help(rem.i-1,rem.j,rem.level+1));
+			}
+			if(isValid(rem.i+1,rem.j,arr)) {
+				q.add(new help(rem.i+1,rem.j,rem.level+1));
+			}
+			if(isValid(rem.i,rem.j-1,arr)) {
+				q.add(new help(rem.i,rem.j-1,rem.level+1));
+			}
+			if(isValid(rem.i,rem.j+1,arr)) {
+				q.add(new help(rem.i,rem.j+1,rem.level+1));
+			}
+		}
+		return level;
+	}
