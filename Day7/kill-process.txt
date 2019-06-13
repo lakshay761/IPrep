@@ -1,0 +1,35 @@
+
+  	 public static List<Integer> killProcess(List<Integer> pid, List<Integer> ppid, int kill) {
+         // Write your code here
+         HashMap<Integer,node> hm=new HashMap<Integer,node>();
+         for(int i=0 ;i<pid.size();i++){
+            hm.put(pid.get(i),new node(pid.get(i))); 
+         }
+         for(int i=0 ;i<pid.size();i++){
+             if(ppid.get(i) == 0){
+                node root = hm.get(pid.get(i));
+             }else{
+            hm.get(ppid.get(i)).children.add(hm.get(pid.get(i)));  
+         
+             }
+        }
+         
+         ArrayList<Integer> res = new ArrayList<Integer>();
+         res.add(hm.get(kill).data);
+         display(hm.get(kill),res);
+         return res;
+     }
+     public static void display(node pn, ArrayList<Integer> l) {
+        for (node n: pn.children) {
+            l.add(n.data);
+            display(n, l);
+        }
+    }
+     static class node{
+         int data;
+         ArrayList<node> children;
+         node(int data){
+             children= new ArrayList<>();
+             this.data = data;
+         }
+     }
