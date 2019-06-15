@@ -1,0 +1,25 @@
+public static int numComponents(Node n, int[] G) {
+         // write your code here
+         Node pre = n;
+         Node curr = n.next;
+         int comps = 1;
+         while(curr !=null){
+             if(find(G,pre.data) == false && find(G,curr.data) == true){
+                 comps++;
+             }
+            //  else if(find(G,pre.data) == false && find(G,curr.data) == true){
+            //      comps++;
+            //  }
+             pre = pre.next;
+             curr = curr.next;
+         }
+         return comps;
+     }
+    public static boolean find(int[] G,int key){
+         for(int i=0;i<G.length;i++){
+             if(key == G[i]){
+                 return true;
+             }
+         }
+         return false;
+     }

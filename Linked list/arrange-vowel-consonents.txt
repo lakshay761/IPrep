@@ -1,0 +1,50 @@
+ public static Node arcv(Node head) {
+         Node cn = head;
+         Node vh = null;
+         Node vt = null;
+         int vs = 0;
+         Node ch = null;
+         Node ct = null;
+         int cs = 0;
+         while(cn != null){
+             if(cn.data == 'a' || cn.data == 'e' ||cn.data == 'i' ||cn.data == 'o' ||cn.data == 'u'){
+                 vs++;
+                 Node n = new Node(cn.data,null);
+                //  n.data = cn.data;
+                 if(vh == null){
+                     vh = n;
+                     vt = n;
+                     //n.next = null;
+                 }
+                 else{
+                     vt.next = n;
+                     vt = n;
+                 }
+             }
+             else{
+                 cs++;
+                 Node n = new Node(cn.data,null);
+                 n.data = cn.data;
+                 if(ch == null){
+                     ch = n;
+                     ct = n;
+                     //n.next = null;
+                 }
+                 else{
+                     ct.next = n;
+                     ct = n;
+                 }
+             }
+             cn = cn.next;
+         }
+         if(cs == 0)
+           { return vh;}
+         if(vs ==0)
+            {return ch;}
+         if(vs!=0 && cs !=0){
+             vt.next = ch;
+             vt = ct;
+             return vh;
+             }
+         return head;
+     }

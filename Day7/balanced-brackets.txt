@@ -1,0 +1,32 @@
+ public static void isbal(String s){
+     // Write your code here
+        Stack<Character> st = new Stack<>();
+        for(int i=0;i<s.length();i++){
+            char ch = s.charAt(i);
+            if(ch == '(' ||ch == '[' ||ch == '{'){
+                st.push(ch);
+            }else if(st.size()>0){
+                if(ch == ')' && st.peek() == '('){
+                    st.pop();
+                    continue;
+                }else if(ch == ']' && st.peek() == '['){
+                    st.pop();
+                    continue;
+                }else if(ch == '}' && st.peek() == '{'){
+                    st.pop();
+                    continue;
+                }
+                else{
+                    System.out.print("not balanced");
+                    return;
+                }
+            }else{
+                System.out.print("not balanced");
+                    
+                return ;
+            }
+        }
+        System.out.print("balanced");
+                    
+        return ;
+     }

@@ -1,0 +1,14 @@
+ public static void printBracketsPos(String s){
+         // Write your code here
+         Stack<Integer> st = new Stack<>();
+         int ct = 1;
+         for(int i =0;i<s.length();i++){
+             if(s.charAt(i) == '('){
+                 st.push(ct);
+                 System.out.print(ct+" ");
+                 ct++;
+             }
+             else if(s.charAt(i) == ')'){
+                 System.out.print(st.pop()+" ");
+             }
+         }
