@@ -1,0 +1,39 @@
+import java.util.*;
+ 
+ public class Main {
+ 
+     public static void minTransfer(int[] heights) {
+         // Write your code here
+        HashMap<Integer,Integer> hm =new HashMap<>();
+        // hm.put(heights[0],1);
+        for(int i=0 ; i <heights.length ; i++){
+            int a = heights[i];
+            if(hm.containsKey(a-1)){
+                hm.put(heights[i],hm.get(a-1)+1);
+            }else{
+                hm.put(heights[i],1);
+            }
+            // System.out.println(hm.size()+" ");
+        }
+        int max = Integer.MIN_VALUE;
+        for(int a: hm.keySet()){
+            int val = hm.get(a);
+            if(val>max){
+                max = val;
+            }
+        }
+        System.out.println(hm.size() - max );
+     }
+ 
+     //Dont make changes here
+     public static void main(String[] args) {
+         Scanner scn = new Scanner(System.in);
+         int n = scn.nextInt();
+         int[] heights = new int[n];
+         for (int i = 0; i < n; i++) {
+             heights[i] = scn.nextInt();
+         }
+         minTransfer(heights);
+     }
+ 
+ }

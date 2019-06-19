@@ -1,0 +1,62 @@
+import java.util.*;
+ 
+ public class Main {
+ 
+     public static void equal_012(String line) {
+         // Write your code here
+         HashMap<String,Integer> hm = new HashMap<>();
+         int c0 = 0;
+         int c1 = 0;
+         int c2 = 0;
+         int gap1 = 0;
+         int gap2 = 0;
+         hm.put("0,0",1);
+         for(int i = 0; i<line.length(); i++){
+             char ch = line.charAt(i);
+             if(ch == '0'){
+                 c0++;
+             }else if(ch == '1'){
+                 c1++;
+             }else if(ch == '2'){
+                 c2++;
+             }
+             gap1 = c1 - c0;
+             gap2 = c2 - c1;
+             
+            String gap = gap1 + "," + gap2;
+             
+             if(hm.containsKey(gap)){
+                 hm.put(gap,hm.get(gap)+1);
+             }
+             else{
+                 hm.put(gap,1);
+             }
+         }
+         int sum = 0;
+          for(String a : hm.keySet()){
+              int val = hm.get(a);
+            //   System.out.println(a + "  " + val + " -------- ");
+              sum += (factorial(val) / (factorial(val - 2) * factorial(2)));
+          }
+         System.out.println(sum);
+     }
+        
+     public static int factorial(int n) {
+        //1
+        int fact = 1;
+        //2
+        for (int i = 1; i <= n; i++) {
+            //3
+            fact = fact * i;
+        }
+        //4
+        return fact;
+    }
+     // Dont make changes here
+     public static void main(String[] args) {
+         Scanner sc = new Scanner(System.in);
+         equal_012(sc.next());
+ 
+     }
+ 
+ }

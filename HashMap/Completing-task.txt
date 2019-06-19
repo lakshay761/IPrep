@@ -1,0 +1,44 @@
+import java.util.*;
+ 
+ public class Main {
+ 
+ 	  public static void completeTask(int n, int m, int[] compl) {
+ 	 	 //Write your code here	 	 
+ 	 	 boolean[] arr = new boolean[n+1];
+ 	 	 for(int i = 0; i< m; i++){
+ 	 	     arr[compl[i]] = true;
+ 	 	 }
+ 	 	 int flag = 0;
+ 	 	 ArrayList<Integer> al1=new ArrayList<>();
+ 	 	 ArrayList<Integer> al2=new ArrayList<>();
+ 	 	 for(int i = 1 ; i<=n ; i++){
+ 	 	     if(arr[i] == false && flag == 0){
+ 	 	           al1.add(i);
+ 	 	           flag = flag==0?1:0;
+ 	 	     }else if(arr[i] == false && flag == 1){
+ 	 	           al2.add(i);
+ 	 	           flag = flag==0?1:0;
+ 	 	     }
+ 	 	 }
+ 	 	 for(int a: al1){
+ 	 	    System.out.print(a + " ");    
+ 	 	 }
+ 	 	 System.out.println();
+ 	 	 for(int a: al2){
+ 	 	    System.out.print(a + " ");    
+ 	 	 }
+ 	 	 
+ 	 	 
+ 	 }
+ 	 //Don't make changes here
+ 	 public static void main(String[] args) {
+ 	 	 Scanner scn = new Scanner(System.in);
+ 	 	 int n = scn.nextInt();
+ 	 	 int m = scn.nextInt();
+ 	 	 int[] num = new int[m];
+ 	 	 for (int i = 0; i < m; i++) {
+ 	 	 	 num[i] = scn.nextInt();
+ 	 	 }
+ 	 	 completeTask(n, m, num);
+ 	 }
+ }
