@@ -1,0 +1,33 @@
+import java.util.*;
+ 
+ public class Main {
+ 
+     public static void main(String[] args){
+         Scanner scn= new Scanner(System.in);
+         int x=scn.nextInt();
+         int y=scn.nextInt();
+         int bound=scn.nextInt();
+         ArrayList<Integer> ret = new ArrayList<>();
+         ret = powerfulIntegers( x, y, bound);
+         for(int i=0;i<ret.size();i++){
+             System.out.print(ret.get(i)+" ");
+         }
+     }
+     // -----------------------------------------------------
+ 	 // This is a functional problem. Only this function has to be written.
+ 	 // This function takes as input Integer x, y and bound.
+ 	 // It should return an ArrayList of all powerfulIntegers 
+ 	  public static ArrayList<Integer> powerfulIntegers(int x, int y, int bound) {
+          //Write your code here
+        Set<Integer> seen = new HashSet();
+        for (int i = 0; i < 18 && Math.pow(x, i) <= bound; ++i)
+            for (int j = 0; j < 18 && Math.pow(y, j) <= bound; ++j) {
+                int v = (int) Math.pow(x, i) + (int) Math.pow(y, j);
+                if (v <= bound)
+                    seen.add(v);
+            }
+
+        return new ArrayList(seen);
+    
+      }
+ }

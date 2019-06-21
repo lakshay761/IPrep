@@ -1,0 +1,16 @@
+ HashMap<Long, Integer> hm = new HashMap<>();
+ 	 	 hm.put((long)0,1);
+ 	 	 int count = 0;
+ 	 	 long sum = 0;
+ 	 	 for(long a:arr){
+ 	 	     sum = a+sum;
+ 	 	     if(hm.containsKey(sum)){
+ 	 	         int val = hm.get(sum);
+ 	 	         count +=val;
+ 	 	         hm.put(sum,val+1);
+ 	 	     }
+ 	 	     else{
+ 	 	         hm.put(sum,1);
+ 	 	     }
+ 	 	 }
+ 	 	 System.out.println(count);

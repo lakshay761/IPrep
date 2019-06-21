@@ -1,0 +1,58 @@
+import java.util.*;
+ 
+ class Main {
+ 
+     static void sortByFreq(int arr[], int n) {
+         // Write your code here
+            HashMap<Integer,Integer> hm = new HashMap<>();
+            for(int a:arr){
+                if(hm.containsKey(a)){
+                    hm.put(a,hm.get(a)+1);
+                }else{
+                    hm.put(a,1);
+                }
+            }
+            
+            PriorityQueue<pair> pq = new PriorityQueue<>();
+            for(int x:hm.keySet()){
+                // System.out.print(x+ " @ " + hm.get(x) + "  &  ");
+                pq.add(new pair(x,hm.get(x)));
+            }
+            // System.out.print("__________");
+            while(pq.size()>0){
+                pair rem = pq.remove();
+                int x = rem.freq;
+                while(x!=0){
+                    System.out.print(rem.ele+ " ");
+                    x--;
+                }
+            }
+            
+        }
+        
+    static class pair implements Comparable<pair>{
+        int ele;
+        int freq;
+        pair(int ele,int freq){
+            this.ele = ele;
+            this.freq = freq;
+        }
+        public int compareTo(pair other){
+            if(other.freq == this.freq){
+                return this.ele - other.ele;
+            }else{
+                return other.freq - this.freq;
+            }
+        }
+    }
+     //Dont make changes here
+     public static void main(String[] args) {
+         Scanner sc = new Scanner(System.in);
+         int N = sc.nextInt();
+         int[] arr = new int[N];
+         for (int i = 0; i < N; i++) {
+             arr[i] = sc.nextInt();
+         }
+         sortByFreq(arr, N);
+     }
+ }
