@@ -1,0 +1,37 @@
+import java.util.*;
+ 
+ public class Main {
+ 
+     // This is a functional problem. You have to complete this function.
+     // It takes as input the String s representing the number. It should return
+     // the most occurring digit in s.
+     public static int solve(String s) {
+         // write your code here.
+         int maxf = Integer.MIN_VALUE;
+         char maxe = 0;
+         HashMap<Character,Integer> hm = new HashMap<>();
+         for(int i = 0; i<s.length();i++){
+             char ch = s.charAt(i);
+             if(hm.containsKey(ch)){
+                 hm.put(ch,hm.get(ch)+1);
+             }else{
+                 hm.put(ch,1);
+             }
+             if(hm.get(ch)>=maxf){
+                 maxf = hm.get(ch);
+                 maxe = ch;
+             }
+         }
+         return maxe-'0';
+         
+     }
+ 
+     public static void main(String[] args) {
+ 
+         Scanner sc = new Scanner(System.in);
+         String s = sc.next();
+         System.out.println(solve(s));
+ 
+     }
+ 
+ }

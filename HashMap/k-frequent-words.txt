@@ -1,0 +1,75 @@
+import java.util.*;
+ 
+ public class Main {
+ 
+ 	 
+ 	 public static ArrayList<String> topKFrequent(String[] words, int k) {
+ 	 //Write your code here	  
+ 	 ArrayList<String> al = new ArrayList<>();
+ 	 HashMap<String,Integer> hm = new HashMap<>();
+            for(String a:words){
+                if(hm.containsKey(a)){
+                    hm.put(a,hm.get(a)+1);
+                }else{
+                    hm.put(a,1);
+                }
+            }
+            
+            PriorityQueue<pair> pq = new PriorityQueue<>();
+            for(String x:hm.keySet()){
+                // System.out.print(x+ " @ " + hm.get(x) + "  &  ");
+                pq.add(new pair(x,hm.get(x)));
+            }
+            // System.out.print("__________");
+            while(pq.size()>0 && k>0){
+                pair rem = pq.remove();
+                int x = rem.freq;
+                // while(x!=0){
+                    // System.out.print(rem.ele+ " ");
+                    // x--;
+                // }
+                al.add(rem.ele);
+                k--;
+            }
+            return al;
+        }
+        
+    static class pair implements Comparable<pair>{
+        String ele;
+        int freq;
+        pair(String ele,int freq){
+            this.ele = ele;
+            this.freq = freq;
+        }
+        public int compareTo(pair other){
+            // if(other.freq == this.freq){
+            //     return this.ele - other.ele;
+            // }else{
+                return other.freq - this.freq;
+            // }
+        }
+    }
+ 
+ 	 //Don't make any changes here
+ 	 public static void main(String[] args) {
+ 	 	 // TODO Auto-generated method stub
+ 
+ 	 	 Scanner s = new Scanner(System.in);
+ 	 	 int n = s.nextInt();
+ 	 	 String[] array = new String[n];
+ 	 	 for (int i = 0; i < array.length; i++) {
+ 	 	 	 array[i] = s.next();
+ 	 	 }
+ 	 	 int k = s.nextInt();
+ 	 	 ArrayList<String> res = topKFrequent(array, k);
+ 	 	 Collections.sort(res);
+ 	 	 System.out.println(res);
+ 
+ 	 }
+ 
+ 
+ 
+ 
+ 
+ 
+ }

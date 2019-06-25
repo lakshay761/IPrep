@@ -1,0 +1,44 @@
+import java.util.*;
+ 
+ public class Main {
+ 
+     // This is a functional problem. You have to complete this function.
+     // It takes as input a number n. It should return true if the number is
+     // happy, else should return false.
+     public static boolean isHappy(int n) {
+         // write your code here.
+        HashSet<Integer> hs = new HashSet<>();
+        while(!hs.contains(n)){
+            hs.add(n);
+            // System.out.print(n + " -- ");
+            int rem =0;
+            int sum = 0;
+            int i =10;
+            while(n!=0){
+                rem = n% i;
+                sum += rem*rem;
+                n = n/i;
+                // i *=10;
+            }
+            if(sum == 1){
+                return true;
+            }
+            n = sum;
+            
+        }
+        return false;
+     }
+ 
+     public static void main(String[] args) {
+         Scanner sc = new Scanner(System.in);
+ 
+         int N = sc.nextInt();
+ 
+         if (isHappy(N)) {
+             System.out.println("Happy");
+         } else {
+             System.out.println("Not Happy");
+         }
+     }
+ 
+ }

@@ -1,0 +1,34 @@
+import java.util.*;
+ 
+ public class Main {
+ 
+ 	 public static int getHashValue(String line) {
+ 	    HashMap<Character,Integer> hm = new HashMap<>();
+ 	    String feeder = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+ 	    for(int i = 0; i<feeder.length() ; i++){
+ 	        char ch = feeder.charAt(i);
+ 	        hm.put(ch,i);
+ 	    }
+        String[] splitStr = line.split("\\s+");
+        int sum = 0;
+        
+        // System.out.print(splitStr.length + ",");
+        for(String s: splitStr){
+            for(int i = 0; i<s.length() ; i++){
+                char ch = s.charAt(i);
+                sum += hm.get(ch) + i;
+            }
+            
+        }
+        
+        return sum*splitStr.length;
+  	 }
+ 
+ 	 public static void main(String[] args) {
+ 	 	 Scanner scn = new Scanner(System.in);
+ 	 	 String line = scn.nextLine();
+ 	 	 System.out.println(getHashValue(line));
+ 
+ 	 }
+ 
+ }

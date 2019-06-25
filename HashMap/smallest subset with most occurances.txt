@@ -1,0 +1,75 @@
+import java.util.*;
+ 
+ public class Main {
+ 
+     public static void subarrAllOcc(int[] arr) {
+         //Write your code here
+         HashMap<Integer,Integer> hm = new HashMap<>();
+         int max= Integer.MIN_VALUE;
+         int ele = 0;
+         for(int i = 0;i<arr.length;i++){
+             int a = arr[i];
+             if(hm.containsKey(a)){
+                 hm.put(a,hm.get(a) +1);
+             }else{
+                 hm.put(a,1);
+             }
+             if(hm.get(a) > max){
+                 max = hm.get(a);
+                 ele = a;
+             }
+             
+         }
+        //  System.out.print(ele + " - " +max);
+         HashMap<Integer,Integer> window = new HashMap<>();
+         int maxw = -1;
+         int j = -1;
+         for(int i = 0;i<arr.length;i++){
+             int a = arr[i];
+             if(a == ele){
+                 if(window.containsKey(a)){
+                    window.put(a,window.get(a) +1);
+                     
+                 }else{
+                     window.put(a,1);
+                 }
+                 maxw = window.get(ele);
+                     if(maxw >= max){
+                         j = i;
+                         break;
+                     }
+                 
+             }
+         }
+        //  System.out.print(j);
+         
+         //window----!
+         int i = 0;
+         while(i<j){
+             int a = arr[i];
+             if(a == ele){
+                 break;
+             }else{
+                 i++;
+             }
+         }
+         
+         while(i<=j){
+             System.out.print(arr[i] + " ");
+             i++;
+         }
+         
+     }
+ 
+     //Dont make changes here
+     public static void main(String[] args) {
+         Scanner scn = new Scanner(System.in);
+ 
+         int n = scn.nextInt();
+         int[] arr = new int[n];
+         for (int i = 0; i < n; i++) {
+             arr[i] = scn.nextInt();
+         }
+         subarrAllOcc(arr);
+     }
+ }

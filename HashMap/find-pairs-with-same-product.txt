@@ -1,0 +1,44 @@
+import java.util.*;
+ 
+ public class Main {
+     // This is a functional problem. You have to complete this function.
+     // It takes as input an array of integers.
+     // It should return 1 or -1.
+ 
+     public static int solve(int[] arr) {
+         // write your code here.
+         HashSet<Integer> hm = new HashSet<>();
+         for(int i=0;i<arr.length;i++){
+             for(int j =i+1;j<arr.length;j++){
+                 int prod = arr[i] * arr[j];
+                 if(hm.contains(prod)){
+                     return 1;
+                 }else{
+                     hm.add(prod);
+                 }
+             }
+         }
+         return -1;
+     }
+ 
+     public static void main(String[] args) {
+ 
+         Scanner sc = new Scanner(System.in);
+         int N = sc.nextInt();
+         int[] arr = new int[N];
+ 
+         for (int i = 0; i < N; i++) {
+             arr[i] = sc.nextInt();
+         }
+ 
+         int res = solve(arr);
+ 
+         if (res == 1) {
+             System.out.println("Found");
+         } else if (res == -1) {
+             System.out.println("Not Found");
+         }
+ 
+     }
+ 
+ }s
