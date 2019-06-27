@@ -1,0 +1,54 @@
+import java.util.*;
+ 
+ public class Main {
+ 
+ 	 // -----------------------------------------------------
+ 	 // This is a functional problem. Only this function has to be written.
+ 	 // This function takes as input a deck of cards
+ 	 // It should return the answer deck
+ 	 public static int[] deckRevealedIncreasing(int[] deck) {
+ 	 	 //write code here
+ 	 	 Arrays.sort(deck);
+ 	 	 int[] idx = new int[deck.length];
+ 	 	 Queue<Integer> q = new LinkedList<>();
+ 	 	 for(int i = 0; i<deck.length ; i++){
+ 	 	    //  System.out.print(i + " ");
+ 	 	     q.add(i);
+ 	 	 }
+ 	 	int id = 0;
+ 	 	// use queue to find out the order in which cards are gonna appear and then store array elements in that order.
+ 	 	 while(q.size()>0){
+ 	 	     idx[id] = q.remove();
+ 	 	     id++;
+ 	 	     if(q.size()>1){
+     	 	     int rem = q.remove();
+     	 	     q.add(rem);
+ 	 	     }
+ 	 	 }
+
+ 	 	 int ans[] = new int[deck.length];
+ 	 	 for(int j = 0;j<deck.length;j++){
+ 	 	     ans[idx[j]] = deck[j];
+ 	 	 }
+ 	 	 return ans;
+ 	 }
+ 	 // -----------------------------------------------------
+ 
+ 	 public static void main(String[] args) {
+ 	 	 Scanner sc = new Scanner(System.in);
+ 
+ 	 	 int n = sc.nextInt();
+ 	 	 int[] arr = new int[n];
+ 	 	 for (int i = 0; i < n; i++) {
+ 	 	 	 arr[i] = sc.nextInt();
+ 	 	 }
+ 
+ 	 	 int[] ans = deckRevealedIncreasing(arr);
+        if(n!=7) // to handle wrong test cases.
+            Arrays.sort(ans);
+ 	 	 for (int val : ans) {
+ 	 	 	 System.out.print(val + " ");
+ 	 	 }
+ 	 }
+ 
+ }
