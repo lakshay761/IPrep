@@ -1,0 +1,20 @@
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] arr = {2,10,6,5,8,7,1,2}; 
+		int left = 0;
+		int right = arr.length-1;
+		int max = Integer.MIN_VALUE;
+		while(left<right) {
+			int vol = Math.max(arr[left], arr[right]) * (right - left);
+			if(arr[left]<arr[right]) {
+				left++;
+			}else if(arr[right] < arr[left]) {
+				right--;
+			}else {
+				left++;
+				right--;
+			}
+			max = Math.max(max, vol);
+		}
+		System.out.println(max);
+	}

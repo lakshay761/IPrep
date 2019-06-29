@@ -1,0 +1,50 @@
+ public static int[] pourWater(int[] heights, int v, int k) {
+    
+     // write your code here.
+   
+      
+         for ( int i = 0 ; i < v; ++ i) {
+
+             int l = k, r = k, n = heights.length;
+      
+       // check left for smaller or equal
+
+             while (l > 0 && heights[l] >= heights[l - 1]){
+
+                 -- l;
+     
+        }
+    
+         // go right if equal heights
+
+             while (l < k && heights[l] == heights[l + 1]){
+
+                 ++ l;
+    
+         }
+
+             // go right 
+    
+         while (r < n - 1 && heights[r] >= heights[r + 1]){
+
+                 ++r;
+       
+      }
+     
+        
+             while (r > k && heights[r] == heights[r - 1 ]){
+   
+              -- r;
+     
+        }
+     
+       
+        int placed = heights[l] < heights[k] ? ++heights[l] : ++ heights[r];
+  
+      
+             
+         }
+  
+      return heights;
+     
+}

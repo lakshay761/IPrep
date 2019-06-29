@@ -1,0 +1,56 @@
+import java.util.*;
+ 
+ class Main {
+     public static void main(String[] args){
+         Scanner scn= new Scanner(System.in);
+         int n=scn.nextInt();
+         int[] nums= new int[n];
+         for(int i=0;i<n;i++){
+             nums[i]=scn.nextInt();
+         }
+         int k=scn.nextInt();
+         System.out.print(threeSumClosest(nums,k));
+ 	 }
+ 	 // -----------------------------------------------------
+ 	 // This is a functional problem. Only this function has to be written.
+ 	 // This function takes as input an array and an integer 
+ 	 // It should return an integer value.
+ 	 
+     public static int threeSumClosest(int[] nums, int target) {
+ 	 	 //Write your code here
+ 	 	Arrays.sort(nums);
+ 	 	int sum = 0;
+ 	 	int d=Integer.MAX_VALUE;
+        // for(int i=0;i<nums.length;i++)
+        //     System.out.print(nums[i] + " ");
+            
+        // System.out.println();
+        for(int i=0 ; i<nums.length-2 ; i++){
+            int j = i+1;
+ 	 	    int k = nums.length-1;
+            int nt = target - nums[i];
+        
+            while(j < k){
+                if(nums[j] + nums[k] == nt){
+                    return target;
+                }
+//                 int dsum = nums[i] + nums[j] + nums[k];
+// System.out.print(i +":"+nums[i] + " "+ j+":"+nums[j] + " " + k+":"+nums[k] +"_________"+ dsum +" \n");
+                int diff = Math.abs(nt - (nums[j]+ nums[k]));
+                if(diff < d){
+                    sum = nums[i] + nums[j] + nums[k];
+                    d = diff;
+                }
+                
+                if(nums[j] + nums[k] >nt){
+                    k--;
+                }
+                else if(nums[j] + nums[k] < nt){
+                    j++;
+                }
+                
+            }
+        }
+        return sum;
+ 	 }
+ }

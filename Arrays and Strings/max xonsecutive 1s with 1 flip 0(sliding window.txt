@@ -1,0 +1,66 @@
+import java.util.*;
+ 
+ public class Main {
+ 
+ 	 // This is a functional problem. You have to complete this function.
+ 	 // It takes as input a binary array. It should return the maximum number
+ 	 // of consecutive 1s in this array if you can flip at most one 0.
+ 	 public static int findMaxConsecutiveOnes(int[] nums) {
+ 	 	 // write your code here.
+        int zeroes = 0;
+        int i = -1;
+        int j = 0;
+        int ans = 0;
+        while(j<nums.length && i<nums.length){
+            if(nums[j] == 1){
+                j++;
+                 ans = Math.max(ans,(j-i-1));
+           
+            }
+            else if(nums[j] == 0 && zeroes == 0){
+                j++;
+                zeroes++;
+                 ans = Math.max(ans,(j-i-1));
+           
+            }
+            
+            else if(nums[j] == 0 && zeroes >0){
+                i++;
+                if(nums[i] == 0){
+                    zeroes--;
+                }
+            }
+        }
+        return ans;
+ 	 }
+ 
+ 	 public static void main(String[] args) {
+ 	 	 Scanner sc = new Scanner(System.in);
+ 
+ 	 	 // Input for length of first array.
+ 	 	 int N = sc.nextInt();
+ 
+ 	 	 int[] arr1 = new int[N];
+ 
+ 	 	 // Input for array1 elements.
+ 	 	 for (int i = 0; i < arr1.length; i++) {
+ 	 	 	 arr1[i] = sc.nextInt();
+ 	 	 }
+ 
+ 	 	 int result = findMaxConsecutiveOnes(arr1);
+ 
+ 	 	 System.out.println(result);
+ 
+ 	 }
+ 
+ 	 // Function to display an array.
+ 	 public static void display(int[] arr) {
+ 
+ 	 	 for (int i = 0; i < arr.length; i++) {
+ 	 	 	 System.out.print(arr[i] + " ");
+ 	 	 }
+ 
+ 	 	 System.out.println();
+ 	 }
+ 
+ }

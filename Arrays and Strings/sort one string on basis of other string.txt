@@ -1,0 +1,55 @@
+import java.util.*;
+ 
+ class Main{
+     public static void main(String[] args){
+         Scanner scn= new Scanner(System.in);
+         String S= scn.next();
+         String T=scn.next();
+         System.out.print(customSortString(S, T));
+ 	 }
+ 	 // -----------------------------------------------------
+ 	 // This is a functional problem. Only this function has to be written.
+ 	 // This function takes as input two strings
+ 	 // It should return required output.	  
+ 
+     public static String customSortString(String S, String T) {
+        //Write your code here
+        HashMap<Character,Integer> hm = new HashMap<>();
+        String ans = "";
+        for(int i = 0;i<T.length(); i++){
+            char ch = T.charAt(i);
+            if(hm.containsKey(ch)){
+                hm.put(ch,hm.get(ch)+1);
+            }else{
+                hm.put(ch,1);
+            }
+        }
+        
+        for(int i =0 ; i<S.length(); i++){
+            char ch = S.charAt(i);
+            if(hm.containsKey(ch)){
+                int val = hm.get(ch);
+                while(val !=0){
+                    // System.out.print(ch + " ");
+                    ans += ch;
+                    val--;
+                }
+                hm.remove(ch);
+            }
+        }
+        
+        for(char ch = 'a' ;ch < 'z'; ch++){
+              if(hm.containsKey(ch)){
+                int val = hm.get(ch);
+                while(val !=0){
+                    // System.out.print(ch + " ");
+                    ans += ch;
+                    val--;
+                }
+                hm.remove(ch);
+            }   
+        }
+        
+        return ans;
+ 	 }
+ }

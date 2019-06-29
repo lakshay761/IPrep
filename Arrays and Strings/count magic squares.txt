@@ -1,0 +1,62 @@
+import java.util.*;
+  
+  public class Main {
+  	  public static void main(String[] args) {
+  	  	  Scanner scn = new Scanner(System.in);
+  	  	  int r = scn.nextInt();
+  	  	  int c = scn.nextInt();
+  	  	  int[][] Input = new int[r][c];
+  	  	  for (int i = 0; i < r; i++) {
+  	  	  	  for (int j = 0; j < c; j++) {
+  	  	  	  	  Input[i][j] = scn.nextInt();
+  	  	  	  }
+  	  	  }
+  	  	  System.out.print(numMagicSquaresInside(Input));
+  	  }
+  
+  	  // -----------------------------------------------------
+  	  // This is a functional problem. Do not make changes to main
+  	  // This function takes as input an array and integer k.
+  	  // It should print required output.
+  	  public static int numMagicSquaresInside(int[][] grid) {
+  	  	  // Write your code here
+  	  	  int count = 0;
+  	  	  for(int i = 0 ; i<grid.length; i++){
+  	  	      for(int j = 0 ; j<grid[0].length ; j++){
+  	  	           if(isSpValid(grid,i,j)){
+  	  	               count++;
+  	  	           }
+  	  	      }
+  	  	  }
+  	  	  return count;
+  	  }
+  	  
+  	  public static boolean isSpValid(int[][] grid,int spi , int spj){
+  	      if(spi+3 <= grid.length && spj+3 <= grid[0].length && grid[spi+1][spj+1] == 5){
+  	        for(int r = spi; r < spi+3 ; r++){
+  	            int sum = 0;
+  	            for(int c = spj ; c < spj+3 ; c++){
+  	              sum += grid[r][c];  
+  	            }
+  	            if(sum != 15){
+  	                return false;
+  	            }
+  	        }
+  	        for(int c = spj; c < spj+3 ; c++){
+  	            int sum = 0;
+  	            for(int r = spi ; r < spi+3 ; r++){
+  	              sum += grid[r][c];  
+  	            }
+  	            if(sum != 15){
+  	                return false;
+  	            }
+  	      }
+  	      return true;
+  	  }
+  	  
+  	  return false;
+  	  
+  }
+  }
+  
+  

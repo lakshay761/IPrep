@@ -1,0 +1,53 @@
+import java.util.Scanner;
+ 
+ public class Main {
+ 	 public static String intToRoman(int num) {
+ 	 //Write your code here
+ 	    String ans = "";
+ 	    
+ 	 	 for(int i = dict.length-1; i>=0 ;){
+ 	 	     if(num - dict[i].n >= 0){
+ 	 	         ans += dict[i].s;
+ 	 	         num = num - dict[i].n;
+ 	 	     }else{
+ 	 	         i--;
+ 	 	     }
+ 	 	 }
+ 	 	 return ans;
+ 
+ 	 }
+ 	 
+ 	 static pair[] dict = {
+ 	     new pair(1,"I"),
+ 	     new pair(4,"IV"),
+ 	     new pair(5,"V"),
+ 	     new pair(9,"IX"),
+ 	     new pair(10,"X"),
+ 	     new pair(40,"XL"),
+ 	     new pair(50,"L"),
+ 	     new pair(90,"XC"),
+ 	     new pair(100,"C"),
+ 	     new pair(400,"CD"),
+ 	     new pair(500,"D"),
+ 	     new pair(900,"CM"),
+ 	     new pair(1000,"M")
+ 	 };
+ 	 public static class pair{
+ 	     int n;
+ 	     String s = null;
+ 	     pair(int n , String s){
+ 	         this.n = n;
+ 	         this.s = s;
+ 	     }
+ 	 }
+ 
+ 	 //Don't make any changes here
+ 	 public static void main(String[] args) {
+ 
+ 	 	 Scanner s = new Scanner(System.in);
+ 	 	 int num = s.nextInt();
+ 	 	 System.out.println(intToRoman(num));
+ 
+ 	 }
+ 
+ }
