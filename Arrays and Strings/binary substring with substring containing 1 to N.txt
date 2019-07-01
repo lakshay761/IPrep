@@ -1,0 +1,34 @@
+import java.util.*;
+ 
+ class Main {
+ 	 public static boolean queryString(String S, int N) {
+ 	 //Write your code here	 
+ 	 HashSet<String> hs = new HashSet<>();
+ 	 for(int i = 0; i<S.length()-1 ; i++){
+ 	     for(int j = i+1 ; j<=S.length() ; j++){
+ 	         String str = S.substring(i,j);
+ 	         hs.add(str);
+ 	     }
+ 	 }
+ 	 
+ 	 for(int i = N/2; i<=N ; i++){
+ 	     String stc = Integer.toBinaryString(i);
+ 	     if(!hs.contains(stc)){
+ 	         return false;
+ 	     }
+ 	 }
+ 	 
+ 	 return true;
+ 	}
+ 
+ 	 //Don't make any changes here.
+ 	 public static void main(String[] args) {
+ 
+ 	 	 Scanner s = new Scanner(System.in);
+ 	 	 int n = s.nextInt();
+ 	 	 String str = s.next();
+ 	 	 System.out.println(queryString(str, n));
+ 
+ 	 }
+ 
+ }

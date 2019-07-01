@@ -1,0 +1,24 @@
+ public static String similarRGB(String color) {
+         //Write your code here
+        String[] li = {"00","11","33","44","55","66","77","88","99","aa","bb","cc","dd","ee","ff"}; 
+         
+         StringBuilder sb = new StringBuilder();
+         sb.append("#");
+         
+         for(int i = 1; i<color.length() ; i=i+2){
+             String hex = color.substring(i,i+2);
+             
+             int num = Integer.MAX_VALUE;
+             String rgb = "";
+             for(String j:li){
+                 int res = Math.abs(Integer.parseInt(hex ,16) - Integer.parseInt(j,16));
+                 
+                 if(res<num){
+                     num = res;
+                     rgb = j;
+                 }
+             }
+             sb.append(rgb);
+         }
+         return sb.toString();
+     }
