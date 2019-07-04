@@ -1,0 +1,15 @@
+public static List<String> generatePossibleNextMoves(String s) {
+ 	 	 // Write your code here
+ 	 	 List<String> res = new ArrayList<>();
+ 	 	 
+ 	 	 for(int i = 0; i<s.length()-1 ; i++){
+ 	 	     char ch = s.charAt(i);
+ 	 	     char chn = s.charAt(i+1);
+ 	 	     if(ch == '+' && chn == '+'){
+ 	 	         String ans = s.substring(0,i) + "--" + s.substring(i+2);
+ 	 	         res.add(ans);
+ 	 	     }
+ 	 	 }
+ 	 	 
+ 	 	 return res;
+ 	 }
