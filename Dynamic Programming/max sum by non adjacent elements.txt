@@ -1,0 +1,17 @@
+ public int rob(int[] nums) {
+        if(nums.length == 0){return 0;}
+        if(nums.length == 1){return nums[0];}
+        int max = nums[0];
+        // max sum made by including nums[i] ie  max sum by exluding nums[i-1];
+        int include = nums[0];
+        //max sum that can be made by excluding nums[i] 
+        //ie max of(max sum made by including nums[i-1] , max sum made by excluding nums[i-1])
+        int exclude = 0;   
+        int exclude_n = 0;
+        for(int i = 1; i < nums.length ; i++){
+            exclude_n = Math.max(include,exclude);
+            include = nums[i] + exclude;
+            exclude = exclude_n;
+        }
+        return Math.max(exclude,include);
+    }s

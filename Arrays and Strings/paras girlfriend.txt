@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+            Scanner scn = new Scanner(System.in);
+            int N = scn.nextInt();
+            int Q = scn.nextInt();
+            int M = scn.nextInt();
+            int[][] updates = new int[Q][2];
+            for(int i = 0; i<Q ; i++){
+                    updates[i][0] = scn.nextInt();
+                    updates[i][1] = scn.nextInt();
+            }
+            // input over
+            int[] added = rangeAdd(N , updates);
+            // all operations done
+            
+            int max = Integer.MIN_VALUE;
+            int otr = -1;
+            
+            // finding the operation to remove
+             for (int j = 0; j<updates.length ; j++) {
+                    int start = update[j][0];
+                    int end = update[j][1];
+                    int count =0;            // count of m length plants found after removing this operation
+                    for(int i = start ; i <=end ; i++ ){
+                        if(added[i] -1 == M){
+                                count++;
+                        }
+                    }
+                    if(count > max){
+                         max = count;
+                         otr = j;
+                    }
+             }
+            
+            System.out.println(max);            
+    }
+        public static int[] rangeAdd(int length, int[][] updates) {
+         int[] ans = new int[length];
+         
+        for (int[] update : updates) {
+            int start = update[0];
+            int end = update[1];
+            int inc = 1;
+             
+            ans[start] += inc;
+            if (end + 1 < length) {
+                ans[end + 1] += -inc;
+            }
+        }
+ 
+        for (int i = 1; i < length; i++) {
+            ans[i] += ans[i -1];
+        }
+         
+        return ans;
+        }
+}

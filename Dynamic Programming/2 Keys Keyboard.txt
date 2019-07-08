@@ -1,0 +1,11 @@
+public static int _2KeysKeyboard(int n) {
+ 	 	 //Write your code here
+ 	 	int ans = 0;
+        for(int i = 2 ; n>1 ; i++){
+            while(n%i == 0){
+                ans +=i;
+                n = n / i;
+            }
+        }
+        return ans;
+ 	 }
