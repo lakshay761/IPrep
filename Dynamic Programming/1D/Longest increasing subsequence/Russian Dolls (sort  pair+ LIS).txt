@@ -1,0 +1,52 @@
+ public int maxEnvelopes(int[][] envelopes) {
+         if (   envelopes           == null
+        || envelopes.length    == 0
+        || envelopes[0]        == null
+        || envelopes[0].length == 0){
+        return 0;    
+    }
+        pair[] arr = new pair[envelopes.length];
+        for(int i = 0 ; i<envelopes.length ; i++){
+            arr[i] = new pair(envelopes[i][0] , envelopes[i][1]);
+        }   
+        // Step 1.      Sort
+        Arrays.sort(arr);
+        // Step 2.      LIS     
+        
+        return LIS(arr);
+    }
+    public int LIS(pair[] nums) {
+        if(nums.length == 0){return 0;}
+        int[] dp = new int[nums.length];
+        int lis = 1;
+        dp[0] = 1;
+        System.out.print(dp[0] + " ");
+        for(int i = 1 ; i< nums.length ; i++){
+            int ans = 0;
+            for(int j = i-1 ; j >=0 ; j--){
+                if(nums[i].w > nums[j].w && nums[i].h > nums[j].h)
+                    ans = Math.max(ans , dp[j] );
+            }
+            dp[i] = 1+ ans;
+            System.out.print(dp[i] + " ");
+            lis = Math.max(lis,dp[i]);
+        }
+        return lis;
+    }
+    public void display(pair[] arr){
+        for(int i = 0; i<arr.length ; i++){
+            System.out.println(arr[i].w  + " , " + arr[i].h);
+        }
+    }
+    public class pair implements Comparable<pair>{
+        int w;
+        int h;
+        pair(int w,int h){
+            this.w = w;
+            this.h = h;
+        }
+        @Override
+        public int compareTo(pair other) {
+            return this.w - other.w;
+        }
+    }
