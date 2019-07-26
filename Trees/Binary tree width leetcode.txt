@@ -1,0 +1,39 @@
+class Solution {
+    class pair{
+        TreeNode node;
+        int pos;
+        pair(TreeNode node ,int pos){
+            this.node = node;
+            this.pos = pos;
+        }
+    }
+    public int widthOfBinaryTree(TreeNode root) {
+        if(root == null){
+            return 0;
+        }
+        Queue<pair> q = new LinkedList<>();
+        q.add(new pair(root , 1));
+        int max = 1;
+        int lb = Integer.MAX_VALUE;
+        int rb = Integer.MIN_VALUE;
+        while(q.size()>0){
+            int ct = q.size();
+            while(ct > 0){
+                pair rem = q.remove();
+                lb = Math.min(lb , rem.pos);
+                rb = Math.max(rb , rem.pos);
+                if(rem.node.left != null){
+                    q.add(new pair(rem.node.left , 2 * rem.pos));
+                }
+                if(rem.node.right != null){
+                    q.add(new pair(rem.node.right , (2 * rem.pos) + 1));
+                }
+                ct--;
+            }
+            max = Math.max(max , (rb - lb +1));
+            lb = Integer.MAX_VALUE;
+            rb = Integer.MIN_VALUE; 
+        }
+        return max;
+    }
+}
